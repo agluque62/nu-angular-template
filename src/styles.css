@@ -1,0 +1,5 @@
+/* You can add global styles to this file, and also import other style files */
+@import url("./assets/styles/uv5ki-styles.css");
+@import '~bootstrap/dist/css/bootstrap.min.css';
+@import url("./assets/styles/alertify/alertify.min.css");
+@import url("./assets/styles/alertify/themes/bootstrap.css");
