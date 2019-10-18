@@ -4,19 +4,27 @@ import { TestComponentComponent } from './components/test-component/test-compone
 import { SpvmainComponent } from './components/spvmain/spvmain.component';
 import { SpvcfgComponent } from './components/spvcfg/spvcfg.component';
 import { SpvgwsComponent } from './components/spvgws/spvgws.component';
+import { HomeComponent } from './components/home/home.component';
+import { LoginComponent } from './components/login/login.component';
+import { AuthGuardService} from './services/auth-guard.service';
 
 
 const routes: Routes = [
-	{ path: 'superv', component: SpvmainComponent, data: {pagina: 0 },
+    { path: 'login', component: LoginComponent },
+	{ path: '', component: HomeComponent, canActivate: [AuthGuardService],
 		children: [
-			{path: 'cfg', component: SpvcfgComponent},
-			{path: 'gws', component: SpvgwsComponent}
-		] },
-	{ path: 'test1', component: TestComponentComponent, data: {pagina: 1 } },	
-	{ path: 'test2', component: TestComponentComponent, data: {pagina: 2 } },	
-	{ path: 'test3', component: TestComponentComponent, data: {pagina: 3 } },	
-	{ path: 'test4', component: TestComponentComponent, data: {pagina: 4 } },
-	{ path: '', redirectTo: '/superv', pathMatch: 'full'},				// Path por defecto
+			{ path: 'superv', component: SpvmainComponent, canActivate: [AuthGuardService],
+				children: [
+					{path: 'cfg', component: SpvcfgComponent, canActivate: [AuthGuardService]},
+					{path: 'gws', component: SpvgwsComponent, canActivate: [AuthGuardService]}
+				] },
+			{ path: 'test1', component: TestComponentComponent, canActivate: [AuthGuardService] },	
+			{ path: 'test2', component: TestComponentComponent, canActivate: [AuthGuardService] },	
+			{ path: 'test3', component: TestComponentComponent, canActivate: [AuthGuardService] },	
+			{ path: 'test4', component: TestComponentComponent, canActivate: [AuthGuardService] },
+		], 
+	},
+	// { path: '', redirectTo: '/superv', pathMatch: 'full'},				// Path por defecto
 	{ path: '**', component: TestComponentComponent }					// Path not Found...
 ];
 

@@ -6,6 +6,9 @@ import {filter} from 'rxjs/operators'
 import * as moment from 'moment';
 import * as alertify from 'alertify.js';
 
+import {CommServiceService} from './services/comm-service.service';
+import {AuthenticationService} from './services/authentication.service';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -19,8 +22,12 @@ export class AppComponent {
   fechaHora = moment().format('DD/MM/YYYY, h:mm:ss a');
   myInterval;
   private redirect_subscription: Subscription;
+  private user_subscription: Subscription;
 
-  constructor(private router: Router) {       
+  constructor(
+    private router: Router, 
+    private comm: CommServiceService,
+    private auth: AuthenticationService) {       
 
     // Redirecciona a la subpagina por defecto...
     this.redirect_subscription = this.router.events
@@ -32,20 +39,22 @@ export class AppComponent {
           this.router.navigate(['/superv/cfg']);       
         }
       }
-
       });    
+    this.user_subscription = auth.currentUser.subscribe(
+      usr => this.user = usr ? usr.username : "");
   }
 
   ngOnInit() {
     this.fechaHora = moment().format('DD/MM/YYYY, h:mm:ss a');
     this.myInterval = setInterval(() => {
-		this.fechaHora = moment().format('DD/MM/YYYY, h:mm:ss a');
+		this.fechaHora = moment().format('DD/MM/YYYY, h:mm:ss a');    
     }, 1000);
   }
   
   ngOnDestory() {
     alertify.success('Unsubscribing...');
     this.redirect_subscription.unsubscribe();
+    this.user_subscription.unsubscribe();
     clearInterval(this.myInterval)
   }
 

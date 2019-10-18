@@ -1,57 +1,34 @@
-<div id="agrupar">
-    <header id="cabecera">	
-        <div id="_contSupIzq">
-             <div id="_logo" width="90%">
-                <!-- <img src="./assets/images/nucleo-df-new.jpg" height="85%"/> -->
-                <img src="./assets/images/Corporativo.png" height="85%" />
+     <header>
+         <div class='row mb-4 ml-4 mr-4 text-corp bg-corp'>
+             <div class="col-md-3">
+                <img src="./assets/images/Corporativo-amp-t.png" width="55%" style="opacity:0.9;" />
              </div>
-        </div>
-        <div id="_tit_ppal">
-            <p translate>{{title}}</p>
-            <!-- <div id="_manual" ng-show="false"><a href="" data-ng-click="ctrl.manual()">Manual</a></div> -->
-        </div>
-        <div id="_contSupDrcha">
-            <div id="_hfecha">{{ fechaHora }}</div>
-            <div id="_hsolohora"><i translate>Usuario: </i><b>{{ user }}</b></div>
-        </div>
+             <div class="col-md-7 h2 text-center">
+                {{title}}
+             </div>
+             <div class="col-md-2">
+                <div class='row'><div class="col-md text-right">{{ fechaHora }}</div></div>
+                <div class='row'><div class="col-md text-right"><b>Usuario:</b> {{user}}</div></div>
+             </div>
+         </div>
      </header>
     
-	<nav id="_menu" class="container">
-        <h3 translate>Menu General</h3>
-        <ul class="nav flex-column nav-pills">
-            <li class="nav-item">
-                <a routerLink="/superv" routerLinkActive="active" class="nav-link" translate>Supervision</a>
-            </li>
-            <li class="nav-item">
-                <a routerLink="/test1" routerLinkActive="active" class="nav-link" translate>Configuracion</a>
-            </li>
-            <li class="nav-item">
-                <a routerLink="/test2" routerLinkActive="active" class="nav-link" translate>Mantenimiento</a>
-            </li>
-            <li class="nav-item">
-				<a routerLink="/test3" routerLinkActive="active" class="nav-link"  translate>Acerca de...</a>
-            </li>
-            <li class="nav-item">
-                <a routerLink="/test4" routerLinkActive="active" class="nav-link"  translate>Logout</a>
-            </li>
-        </ul>
-    </nav>
-
-    <section id="_ppal">
-		<router-outlet></router-outlet>
-    </section>
-		
-    <footer id="_pie">
-        <div class="row">
-            <div class="col-md-10">
+    <router-outlet></router-outlet>
+    <footer >
+        <div class="row mt-2 p-2">
+            <div class="col-md-1"></div>
+            <div class="col-md">
+                <alert></alert>
+            </div>
+            <div class="col-md-1"></div>
+        </div>
+        <div class="row ml-4 mr-4 p-2 border text-corp bg-corp">
+            <div class="col-md-10 text-center">
                 Nucleo CC Copyright ©2018..2019 Todos los Derechos Reservados.
 				</div>
-            <div class="col-md-2">
-				Version: {{Version()}}
+            <div class="col-md-2 text-right">
+				<b>Version</b>: {{Version()}}
             </div>
         </div>
     </footer>
-
-
-</div>
 

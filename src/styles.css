@@ -1,5 +1,25 @@
 /* You can add global styles to this file, and also import other style files */
-@import url("./assets/styles/uv5ki-styles.css");
+/*@import url("./assets/styles/uv5ki-styles.css");*/
 @import '~bootstrap/dist/css/bootstrap.min.css';
 @import url("./assets/styles/alertify/alertify.min.css");
 @import url("./assets/styles/alertify/themes/bootstrap.css");
+/** */
+html, body
+{
+    font-family: Arial;
+    font-size: 10pt;
+    color: #4A7729;
+}
+/** Verde PANTONE 364C*/
+.text-corp {
+	color: #4A7729;
+}
+
+.bg-corp{
+	background-color: #e6e6e6;
+}
+
+/** Verde PANTONE 364C */
+.bg-corp1{
+	background-color: #4A7729;
+}
