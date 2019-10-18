@@ -17,7 +17,17 @@ export class SpvgwsComponent implements OnInit {
   private test() {
 	  this.comm.getTest()
 	    .subscribe(
-	    	(data) => console.log(data),
+	    	(data) => console.log('Users ', data),
+	    	(error)=> console.error(error)
+	    	);
+	  this.comm.getTest1()
+	    .subscribe(
+	    	(data) => console.log('Heroes', data),
+	    	(error)=> console.error(error)
+	    	);
+	  this.comm.getTest2()
+	    .subscribe(
+	    	(data) => console.log('Config', data),
 	    	(error)=> console.error(error)
 	    	);
 	 this.comm.postTest(null)

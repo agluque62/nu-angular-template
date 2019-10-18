@@ -2,9 +2,14 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, InjectionToken } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 
-import { fakeBackendProvider } from './helpers';
-import { JwtInterceptor, ErrorInterceptor } from './helpers';
+import { environment } from './../environments/environment';
+
+// import { fakeBackendProvider } from './helpers';
+import { JwtInterceptor/*, ErrorInterceptor */} from './helpers';
+
+import {SimulateBackendService} from './services/simulate-backend.service';
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -37,14 +42,16 @@ const  Config = new AppConfig();
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    HttpClientModule
-  ],
+    HttpClientModule,
+    environment.production ?
+        [] : HttpClientInMemoryWebApiModule.forRoot(SimulateBackendService)  
+    ],
   providers: [
     { provide: AppConfig, useValue: Config },
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
-    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+//    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
         // provider used to create fake backend
-        fakeBackendProvider
+//        fakeBackendProvider
   ],
   bootstrap: [AppComponent]
 })

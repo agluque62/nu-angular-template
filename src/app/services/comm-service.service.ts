@@ -50,15 +50,23 @@ export class CommServiceService {
 
   /** */
   private normalizeUrl(url) {
-  	if (this.config.SimulatorMode == false) {
-  		return url;
-  	}
-  	return './assets/simulate' + url + '.json';
+  	// if (this.config.SimulatorMode == true) {
+   //    return './assets/simulate' + url + '.json';
+  	// }
+    return url;
   }
 
 
   getTest() {
-  	return this.remoteGet('/config');
+  	return this.remoteGet('/api/users');
+  }
+
+  getTest1() {
+    return this.remoteGet('/api/heroes');
+  }
+
+  getTest2() {
+    return this.remoteGet('/commands/config');
   }
 
   postTest(data) {
