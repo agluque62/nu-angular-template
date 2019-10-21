@@ -20,9 +20,16 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
 
 ## Todo List
-[] Esquema de Simulacion basado en "Angular in-memory-web-api". Ponerlo en un 'Module'.
+[..] Esquema de Simulacion basado en "Angular in-memory-web-api". Ponerlo en un 'Module'.
+[..] Esquema de Literales en Fichero aparte y posibilidad de traducción.
+	- Librerias y clases relacionadas: 
+		- @ngx-translate
+		- @biesbjerg/ngx-translate-extract
+		- PruningTranslationLoader
+	- Generar / Actualizar ficheros: 'npm run extract-i18n'
+[] Esquema de log???
 [] Explorar esquema enviroment.
-[] Esquema de Literales en Fichero aparte y posibilidad de traducción.
+[] Explorar el tema del 'JwtInterceptor' y los tokens de 'autentificación'
 [] Explorar el entorno de pruebas unitarias y ent-to-end
 [] Hacer que el servicio de comunicacones retorne un 'observable'
 

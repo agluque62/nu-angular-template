@@ -29,6 +29,11 @@ export class SimulateBackendService implements InMemoryDbService {
     	return {heroes, users};
 	}
 
+    /** Intercepto los GET para fichero locales  */
+    get(reqInfo: RequestInfo) {
+         return undefined;            // No action..   
+    }
+
 	/** Intercepta los POST para autentificacion */
 	post(reqInfo: RequestInfo) {        
         if (reqInfo.url.endsWith('/authenticate'))

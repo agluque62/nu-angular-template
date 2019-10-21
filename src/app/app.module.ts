@@ -1,8 +1,12 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, InjectionToken } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
+// import ngx-translate and the http loader
+import {TranslateLoader, TranslateModule, TranslateService} from '@ngx-translate/core';
+import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+import {PruningTranslationLoader} from './helpers/pruning-translation-loader'
 
 import { environment } from './../environments/environment';
 
@@ -44,7 +48,17 @@ const  Config = new AppConfig();
     ReactiveFormsModule,
     HttpClientModule,
     environment.production ?
-        [] : HttpClientInMemoryWebApiModule.forRoot(SimulateBackendService)  
+        [] : HttpClientInMemoryWebApiModule.forRoot(
+          SimulateBackendService,{
+            passThruUnknownUrl: true  
+          }),  
+        TranslateModule.forRoot({
+                    loader: {
+                        provide: TranslateLoader,
+                        useFactory: HttpLoaderFactory,
+                        deps: [HttpClient]
+                    }
+                })    
     ],
   providers: [
     { provide: AppConfig, useValue: Config },
@@ -55,4 +69,15 @@ const  Config = new AppConfig();
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+
+export class AppModule {
+  constructor(translate: TranslateService){
+    translate.setDefaultLang('es');
+    translate.use('es');
+    console.log('orden de carga de ficheros de idioma');
+  } 
+}
+  // required for AOT compilation
+export function HttpLoaderFactory(http: HttpClient) {
+      return new /*TranslateHttpLoader*/PruningTranslationLoader(http);
+ }

@@ -5,6 +5,7 @@ import {filter} from 'rxjs/operators'
 
 import * as moment from 'moment';
 import * as alertify from 'alertify.js';
+import {TranslateService} from '@ngx-translate/core';
 
 import {CommServiceService} from './services/comm-service.service';
 import {AuthenticationService} from './services/authentication.service';
@@ -25,9 +26,21 @@ export class AppComponent {
   private user_subscription: Subscription;
 
   constructor(
+    private translate: TranslateService,
     private router: Router, 
     private comm: CommServiceService,
     private auth: AuthenticationService) {       
+
+    translate.get('ULISES G 5000 R3').subscribe(
+      val=>{
+        this.title=val;
+        console.log('Primera traduccion del servicio');
+      }, 
+      ()=>{
+        console.error("Translate error");
+      });
+
+    // this.title = this.translate.instant('ULISES G 5000 R3');
 
     // Redirecciona a la subpagina por defecto...
     this.redirect_subscription = this.router.events
@@ -52,7 +65,7 @@ export class AppComponent {
   }
   
   ngOnDestory() {
-    alertify.success('Unsubscribing...');
+    alertify.success(this.translate.get('Unsubscribing'));
     this.redirect_subscription.unsubscribe();
     this.user_subscription.unsubscribe();
     clearInterval(this.myInterval)
