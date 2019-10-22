@@ -23,13 +23,17 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 [..] Esquema de Simulacion basado en "Angular in-memory-web-api". Ponerlo en un 'Module'.
 [..] Esquema de Literales en Fichero aparte y posibilidad de traducción.
 	- Librerias y clases relacionadas: 
-		- @ngx-translate
-		- @biesbjerg/ngx-translate-extract
-		- PruningTranslationLoader
-	- Generar / Actualizar ficheros: 'npm run extract-i18n'
-[] Esquema de log???
+		- @ngx-translate.
+		- @biesbjerg/ngx-translate-extract.
+		- PruningTranslationLoader.
+	- Generar / Actualizar ficheros idioma: 'npm run extract-i18n'.
+[..] Authentication with JWT.
+	- Librerías y clases relacionadas.
+		- Añadir: npm install @auth0/angular-jwt --save
+		- Eliminar 'JwtInterceptor'
+
 [] Explorar esquema enviroment.
-[] Explorar el tema del 'JwtInterceptor' y los tokens de 'autentificación'
+[] Esquema de log???
 [] Explorar el entorno de pruebas unitarias y ent-to-end
 [] Hacer que el servicio de comunicacones retorne un 'observable'
 

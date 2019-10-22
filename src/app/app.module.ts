@@ -1,17 +1,16 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, InjectionToken } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClient, HttpClientModule} from '@angular/common/http';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { JwtModule } from '@auth0/angular-jwt';
+
 // import ngx-translate and the http loader
 import {TranslateLoader, TranslateModule, TranslateService} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {PruningTranslationLoader} from './helpers/pruning-translation-loader'
 
 import { environment } from './../environments/environment';
-
-// import { fakeBackendProvider } from './helpers';
-import { JwtInterceptor/*, ErrorInterceptor */} from './helpers';
 
 import {SimulateBackendService} from './services/simulate-backend.service';
 
@@ -58,14 +57,26 @@ const  Config = new AppConfig();
                         useFactory: HttpLoaderFactory,
                         deps: [HttpClient]
                     }
-                })    
+                }),
+        JwtModule.forRoot({
+              config: {
+                tokenGetter: function  tokenGetter() {
+                     var currentuser = localStorage.getItem('currentUser');
+                     if (currentuser) {
+                       var jcurrentuser = JSON.parse(currentuser);
+                       if (jcurrentuser && jcurrentuser.token) {
+                         return jcurrentuser.token;
+                       }
+                     }
+                     return null; // localStorage.getItem('access_token');
+                   },
+                whitelistedDomains: ['localhost:4200'],            // Configurar esto...
+                blacklistedRoutes: ['http://localhost:4200/login']
+              }
+            })
     ],
   providers: [
     { provide: AppConfig, useValue: Config },
-    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
-//    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
-        // provider used to create fake backend
-//        fakeBackendProvider
   ],
   bootstrap: [AppComponent]
 })

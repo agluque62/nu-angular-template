@@ -9,7 +9,12 @@ html, body
     font-family: Arial;
     font-size: 10pt;
     color: #4A7729;
-}
+/*	background-image: url('./assets/images/trama.png');
+  	background-repeat: no-repeat;
+  	background-attachment: fixed;  
+  	background-size: 100% 100%;
+  	background-blend-mode: lighten;
+*/}
 /** Verde PANTONE 364C*/
 .text-corp {
 	color: #4A7729;

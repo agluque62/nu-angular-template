@@ -60,7 +60,7 @@ export class SimulateBackendService implements InMemoryDbService {
             username: user.username,
             firstName: user.firstName,
             lastName: user.lastName,
-            token: 'fake-jwt-token'
+            token: 'fake-jwt-token for ' + user.username
         });
 
         function ok(body?) {
