@@ -1,12 +1,27 @@
-import { TestBed } from '@angular/core/testing';
+import { TestBed, inject } from '@angular/core/testing';
+import { HttpClient, HttpClientModule} from '@angular/common/http';
 
+import { AppConfig } from '../app.config';
 import { CommServiceService } from './comm-service.service';
 
-describe('CommServiceService', () => {
-  beforeEach(() => TestBed.configureTestingModule({}));
+const  Config = new AppConfig();
 
-  it('should be created', () => {
-    const service: CommServiceService = TestBed.get(CommServiceService);
-    expect(service).toBeTruthy();
-  });
+describe('CommServiceService', () => {
+
+  beforeEach(() => TestBed.configureTestingModule(
+  	{
+      imports: [HttpClientModule],
+      providers: [
+      	CommServiceService,
+		{ provide: AppConfig, useValue: Config },
+      ]  		  		
+  	}));
+
+  // it('should be created', () => {
+  //   const service: CommServiceService = TestBed.get(CommServiceService);
+  //   expect(service).toBeTruthy();
+  // });
+	it('should be created', inject([CommServiceService], (service: CommServiceService) => {
+	    expect(service).toBeTruthy();
+	  }));
 });

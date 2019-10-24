@@ -31,10 +31,12 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 	- Librerías y clases relacionadas.
 		- Añadir: npm install @auth0/angular-jwt --save
 		- Eliminar 'JwtInterceptor'
-
+[..] Hacer que el servicio de comunicacones retorne un 'observable'
+[] Investigar los FORMS.
 [] Explorar esquema enviroment.
 [] Esquema de log???
 [] Explorar el entorno de pruebas unitarias y ent-to-end
-[] Hacer que el servicio de comunicacones retorne un 'observable'
+[] Explorar característica 'sourcemap' relacionado con el DEBUG...
+
 
 

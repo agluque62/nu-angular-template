@@ -1,12 +1,19 @@
 import { TestBed, async } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
+import {TranslateService} from '@ngx-translate/core';
+import {CommServiceService} from './services/comm-service.service';
+import {AuthenticationService} from './services/authentication.service';
+
 import { AppComponent } from './app.component';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        RouterTestingModule
+        RouterTestingModule,
+        TranslateService,
+        CommServiceService,
+        AuthenticationService
       ],
       declarations: [
         AppComponent
