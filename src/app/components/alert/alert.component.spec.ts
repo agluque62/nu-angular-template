@@ -1,6 +1,9 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed, inject } from '@angular/core/testing';
 
 import { AlertComponent } from './alert.component';
+import {AlertService} from '../../services/alert.service';
+import { RouterTestingModule  } from '@angular/router/testing';
+
 
 describe('AlertComponent', () => {
   let component: AlertComponent;
@@ -8,16 +11,25 @@ describe('AlertComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AlertComponent ]
+      declarations: [ AlertComponent],
+      imports: [RouterTestingModule],
+      providers: [AlertService]
     })
     .compileComponents();
   }));
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(AlertComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+  beforeEach( () => 
+    {
+      fixture = TestBed.createComponent(AlertComponent);
+      component = fixture.componentInstance;
+      fixture.detectChanges();
+    });
+
+  // beforeEach( async(inject([AlertService], (service:AlertService)=>{
+  //     fixture = TestBed.createComponent(AlertComponent);
+  //     component = fixture.componentInstance;
+  //     fixture.detectChanges();    
+  // })) );
 
   it('should create', () => {
     expect(component).toBeTruthy();

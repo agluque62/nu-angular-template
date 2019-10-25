@@ -1,23 +1,37 @@
 import { TestBed, async } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
-import {TranslateService} from '@ngx-translate/core';
+import {TranslateModule, TranslateService} from '@ngx-translate/core';
+import { HttpClientModule} from '@angular/common/http';
+
 import {CommServiceService} from './services/comm-service.service';
+import { AppConfig } from './app.config';
+import { AlertService } from  './services/alert.service';
+
 import {AuthenticationService} from './services/authentication.service';
 
 import { AppComponent } from './app.component';
+import { AlertComponent } from './components/alert/alert.component';
+
+const  Config = new AppConfig();
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
         RouterTestingModule,
-        TranslateService,
-        CommServiceService,
-        AuthenticationService
+        HttpClientModule,
+        TranslateModule        
       ],
       declarations: [
-        AppComponent
+        AppComponent,
+        AlertComponent
       ],
+      providers: [
+        CommServiceService, 
+        AuthenticationService,
+        { provide: AppConfig, useValue: Config },
+        AlertService, AlertComponent
+      ]
     }).compileComponents();
   }));
 
